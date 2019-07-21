@@ -18,6 +18,9 @@
     py-autopep8
     web-mode
     emmet-mode
+    company-web
+    js2-mode
+    rjsx-mode
     doom-themes))
 
 (mapc #'(lambda (package)
@@ -50,28 +53,37 @@
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 ;; web development
-(add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode)) ;; auto-enable for .js/.jsx files
-(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))) ;; syntax highlighting
+;;(add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode)) ;; auto-enable for .js/.jsx files
+;;(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))) ;; syntax highlighting
 
 ;;;; indentation
-(defun web-mode-init-hook ()
-  "Hooks for Web mode.  Adjust indent."
-  (setq web-mode-markup-indent-offset 2))
+;;(defun web-mode-init-hook ()
+;;  "Hooks for Web mode.  Adjust indent."
+;;  (setq web-mode-markup-indent-offset 2))
   
-(add-hook 'web-mode-hook  'web-mode-init-hook)
+;;(add-hook 'web-mode-hook  'web-mode-init-hook)
 
 ;;;; disable default jslint
-(require 'flycheck)
-(setq-default flycheck-disabled-checkers
-              (append flycheck-disabled-checkers
-                      '(javascript-jshint json-jsonlist)))
+;;(require 'flycheck)
+;;(setq-default flycheck-disabled-checkers
+;;              (append flycheck-disabled-checkers
+;;                      '(javascript-jshint json-jsonlist)))
 
 ;;;; enable eslint checker for web-mode
-(flycheck-add-mode 'javascript-eslint 'web-mode)
+;;(flycheck-add-mode 'javascript-eslint 'web-mode)
 ;;;; enable flycheck globally
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;;(add-hook 'after-init-hook #'global-flycheck-mode)
 
-(add-hook 'web-mode-hook 'emmet-mode)
+;;(add-hook 'web-mode-hook 'emmet-mode)
+
+;;;; highlight columns
+(setq web-mode-enable-current-column-highlight t)
+(setq web-mode-enable-current-element-highlight t)
+
+(defun my-web-mode-hook ()
+  (set (make-local-variable 'company-backends)
+       '(company-css company-web-html company-yasnippet company-files))
+)
 
 ;; init.el ends here
 
@@ -82,7 +94,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (emmet-mode web-mode use-package py-autopep8 powerline material-theme helm flycheck elpy doom-themes better-defaults))))
+    (rjsx-mode js2-mode web-mode use-package py-autopep8 powerline material-theme helm flycheck emmet-mode elpy doom-themes company-web better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
