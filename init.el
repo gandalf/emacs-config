@@ -17,10 +17,12 @@
     flycheck
     py-autopep8
     web-mode
-    emmet-mode
+    ;;emmet-mode
     company-web
     js2-mode
-    rjsx-mode
+    json-mode
+    ;;rjsx-mode
+    projectile
     doom-themes))
 
 (mapc #'(lambda (package)
@@ -39,7 +41,17 @@
 
 (load-theme 'doom-opera t)
 
-;; python configuration
+(electric-pair-mode 1)
+
+;;(require 'fill-column-indicator)
+
+;; projectile
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+;; PYTHON
+;;---------------------------------------
 (elpy-enable)
 
 (setq python-shell-interpreter "ipython"
@@ -52,38 +64,43 @@
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
-;; web development
-;;(add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode)) ;; auto-enable for .js/.jsx files
-;;(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'"))) ;; syntax highlighting
+;; WEB
+;;---------------------------------------
+(add-to-list 'auto-mode-alist '(".*\.js\'" . rjsx-mode))
 
-;;;; indentation
-;;(defun web-mode-init-hook ()
-;;  "Hooks for Web mode.  Adjust indent."
-;;  (setq web-mode-markup-indent-offset 2))
-  
-;;(add-hook 'web-mode-hook  'web-mode-init-hook)
+(require 'flycheck)
 
-;;;; disable default jslint
-;;(require 'flycheck)
-;;(setq-default flycheck-disabled-checkers
-;;              (append flycheck-disabled-checkers
-;;                      '(javascript-jshint json-jsonlist)))
+;; disable default jslint
+(setq-default flycheck-disabled-checkers
+              (append flycheck-disabled-checkers
+                      '(javascript-jshint json-jsonlist)))
 
-;;;; enable eslint checker for web-mode
-;;(flycheck-add-mode 'javascript-eslint 'web-mode)
-;;;; enable flycheck globally
-;;(add-hook 'after-init-hook #'global-flycheck-mode)
+;; enable flycheck
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
-;;(add-hook 'web-mode-hook 'emmet-mode)
+;; enbale web-mode
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+;;(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
-;;;; highlight columns
+;; indentation
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (set (make-local-variable 'company-backends) '(company-css company-web-html company-yasnippet company-files))
+)
+(add-hook 'web-mode-hook  'my-web-mode-hook)    
+(setq tab-width 2)
+
+;; highlight columns
 (setq web-mode-enable-current-column-highlight t)
 (setq web-mode-enable-current-element-highlight t)
 
-(defun my-web-mode-hook ()
-  (set (make-local-variable 'company-backends)
-       '(company-css company-web-html company-yasnippet company-files))
-)
 
 ;; init.el ends here
 
@@ -94,7 +111,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rjsx-mode js2-mode web-mode use-package py-autopep8 powerline material-theme helm flycheck emmet-mode elpy doom-themes company-web better-defaults))))
+    (json-mode web-mode use-package rjsx-mode py-autopep8 projectile powerline material-theme helm flycheck emmet-mode elpy doom-themes company-web better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
