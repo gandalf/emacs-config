@@ -23,7 +23,10 @@
     json-mode
     ;;rjsx-mode
     projectile
-    doom-themes))
+    powerline
+    doom-themes
+    airline-themes
+    all-the-icons))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
@@ -41,7 +44,21 @@
 
 (load-theme 'doom-opera t)
 
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+(require 'all-the-icons)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
 (electric-pair-mode 1)
+
+(require 'powerline)
+;;(powerline-default-theme)
+(setq powerline-arrow-shape 'arrow14) ;; best for small fonts
+
+(require 'airline-themes)
+;;(load-theme 'airline-papercolor)
+(load-theme 'airline-kolor)
 
 ;;(require 'fill-column-indicator)
 
@@ -109,9 +126,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+	 (quote
+		("c616e584f7268aa3b63d08045a912b50863a34e7ea83e35fcab8537b75741956" "b181ea0cc32303da7f9227361bb051bbb6c3105bb4f386ca22a06db319b08882" "b563a87aa29096e0b2e38889f7a5e3babde9982262181b65de9ce8b78e9324d5" "3eb93cd9a0da0f3e86b5d932ac0e3b5f0f50de7a0b805d4eb1f67782e9eb67a4" "b59d7adea7873d58160d368d42828e7ac670340f11f36f67fa8071dbf957236a" default)))
  '(package-selected-packages
-   (quote
-    (json-mode web-mode use-package rjsx-mode py-autopep8 projectile powerline material-theme helm flycheck emmet-mode elpy doom-themes company-web better-defaults))))
+	 (quote
+		(json-mode web-mode use-package rjsx-mode py-autopep8 projectile powerline material-theme helm flycheck emmet-mode elpy doom-themes company-web better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
