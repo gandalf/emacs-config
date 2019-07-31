@@ -60,6 +60,7 @@
 (require 'init-python)
 (require 'init-web-mode)
 (require 'init-theme)
+(require 'init-powerline)
 
 ;; keybindings
 (global-set-key [f8] 'neotree-toggle)
@@ -67,17 +68,3 @@
 
 ;;; init.el ends here
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (py-autopep8 elpy which-key web-mode use-package smartparens reason-mode projectile ocp-indent neotree json-mode js2-mode forth-mode flycheck find-file-in-project doom-themes counsel company-web better-defaults all-the-icons))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
