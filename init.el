@@ -21,7 +21,7 @@
 (menu-bar-mode t)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
-
+(global-whitespace-mode t)
 
 ;; use-package setup
 (require 'package)
@@ -47,6 +47,7 @@
 (use-package js2-mode)
 (use-package web-mode)
 (use-package company-web)
+(use-package dockerfile-mode)
 
 ;; pull in ./lisp/*
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -63,7 +64,7 @@
 (require 'init-powerline)
 
 ;; keybindings
-(global-set-key [f8] 'neotree-toggle)
+
 (global-set-key (kbd "C-c h") 'company-complete)
 
 ;;; init.el ends here
