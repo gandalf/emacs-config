@@ -15,6 +15,7 @@
 (setq coding-system-for-write 'utf-8)
 (setq sentence-end-double-space nil)
 (setq-default fill-column 80) ; toggle wrapping text at this column
+;;(setq whitespace-style '(face tabs empty trailing lines-tail))
 
 (electric-pair-mode 1)
 (global-display-line-numbers-mode t)
@@ -22,6 +23,7 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 (global-whitespace-mode t)
+(global-hl-line-mode t)
 
 ;; use-package setup
 (require 'package)
@@ -39,7 +41,6 @@
 
 ;; define packages
 (require 'use-package)
-;; always download if not available
 (setq use-package-always-ensure t)
 
 (use-package all-the-icons)
@@ -48,6 +49,7 @@
 (use-package web-mode)
 (use-package company-web)
 (use-package dockerfile-mode)
+(use-package minions)
 
 ;; pull in ./lisp/*
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -62,9 +64,9 @@
 (require 'init-web-mode)
 (require 'init-theme)
 (require 'init-powerline)
+(require 'init-fill-column-indicator)
 
 ;; keybindings
-
 (global-set-key (kbd "C-c h") 'company-complete)
 
 ;;; init.el ends here

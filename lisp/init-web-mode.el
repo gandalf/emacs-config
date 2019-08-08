@@ -11,6 +11,7 @@
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq tab-width 2)
+
   :config
   (defun my-web-mode-hook ()
     "Hooks for Web mode."
