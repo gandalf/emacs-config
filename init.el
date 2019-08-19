@@ -15,11 +15,12 @@
 (setq coding-system-for-write 'utf-8)
 (setq sentence-end-double-space nil)
 (setq-default fill-column 80) ; toggle wrapping text at this column
-;;(setq whitespace-style '(face tabs empty trailing lines-tail))
+;;(setq-default show-trailing-whitespace t)
+(setq whitespace-line-column 250)  ;; hack to get around ugly text
 
 (electric-pair-mode 1)
 (global-display-line-numbers-mode t)
-(menu-bar-mode t)
+(menu-bar-mode 1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 (global-whitespace-mode t)
@@ -65,6 +66,8 @@
 (require 'init-theme)
 (require 'init-powerline)
 (require 'init-fill-column-indicator)
+(require 'init-lsp)
+(require 'init-ws-butler)
 
 ;; keybindings
 (global-set-key (kbd "C-c h") 'company-complete)
