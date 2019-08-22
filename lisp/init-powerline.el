@@ -9,7 +9,7 @@
 (use-package doom-modeline
   :config
   (setq doom-modeline-minor-modes t)
-  ;;(setq doom-modeline-buffer-file-name-style 'file-name)
+  (setq doom-modeline-buffer-file-name-style 'file-name)
   (setq doom-modeline-icon t)
   (setq doom-modeline-major-mode-icon t)
 

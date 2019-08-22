@@ -1,8 +1,7 @@
 ;;; package --- summary
-
 ;;; commentary:
-
 ;;; code:
+
 (setq delete-old-versions -1)
 (setq version-control t)
 (setq vc-make-backup-files t)
