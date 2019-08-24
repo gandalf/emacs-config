@@ -13,16 +13,15 @@
   ;;(require 'lsp-imenu)
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
 
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
-                    :major-modes '(python-mode)
-                    :server-id 'pyls))
+;;  (lsp-register-client
+;;   (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
+;;                    :major-modes '(python-mode)
+;;                    :server-id 'pyls))
 
   (require 'lsp-clients)
-  ;;(require 'cquery)
 
   (add-hook 'python-mode-hook 'lsp)
-  ;;(add-hook 'c++-mode-hook 'lsp)
+  (add-hook 'rjsx-mode-hook 'lsp)
 
   :bind
   ("M-,"  . lsp-ui-peek-find-definitions)
@@ -55,8 +54,6 @@
   :config
   (push 'company-lsp company-backends))
 
-
 (provide 'init-lsp)
 
 ;;; init-lsp ends here
-
