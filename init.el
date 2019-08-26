@@ -17,8 +17,9 @@
 ;;(setq-default show-trailing-whitespace t)
 (setq whitespace-line-column 250)  ;; hack to get around ugly bold red text
 (setq exec-path (append exec-path '("~/.nvm/versions/node/v12.9.0/bin")))
+(setq exec-path (append exec-path '("~/.local/bin")))
+(setq elpy-rpc-python-command "/usr/bin/python2")
 
-;;(electric-pair-mode 1)
 (global-display-line-numbers-mode t)
 (menu-bar-mode 1)
 (toggle-scroll-bar -1)
@@ -46,13 +47,15 @@
 
 (use-package all-the-icons)
 (use-package better-defaults)
-;;(use-package js2-mode)
-;;(use-package rjsx-mode)
 (use-package web-mode)
 (use-package json-mode)
+(use-package js2-mode)
+(use-package rjsx-mode)
+(use-package company)
 (use-package company-web)
 (use-package dockerfile-mode)
 (use-package minions)
+(use-package flycheck)
 
 ;; pull in ./lisp/*
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -71,24 +74,9 @@
 (require 'init-fill-column-indicator)
 (require 'init-lsp)
 (require 'init-ws-butler)
-(require 'init-prettier-js)
 (require 'init-smartparens)
 
 ;; keybindings
 (global-set-key (kbd "C-c h") 'company-complete)
 
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (tide prettier-js rjsx-mode ws-butler which-key web-mode use-package solarized-theme smartparens reason-mode py-autopep8 projectile ocp-indent nyan-mode neotree minions lsp-ui lsp-javascript-typescript json-mode js2-mode forth-mode flycheck fill-column-indicator elpy doom-themes doom-modeline dockerfile-mode counsel company-web company-lsp better-defaults airline-themes))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

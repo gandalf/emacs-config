@@ -3,7 +3,11 @@
 ;;; code:
 
 (use-package elpy
+  :requires flycheck
   :config
+  (setq pyvenv-activate "~/.virtualenvs/python2")
+  (setq flymake-diagnostic-functions '(t))
+
   (elpy-enable)
 
   (add-hook 'elpy-mode-hook (lambda () (highlight-indentation-mode -1)))
@@ -12,8 +16,9 @@
         python-shell-interpreter-args "-i --simple-prompt")
 
   (when (require 'flycheck nil t)
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
+  (setq elpy-modules (delete 'flymake-mode elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode)
+  )
   )
 
 

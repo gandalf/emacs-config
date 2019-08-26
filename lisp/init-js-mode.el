@@ -7,7 +7,6 @@
         ("\\.jsx\\'" . rjsx-mode))
 
   :init
-  (add-hook 'rjsx-mode-hook 'prettier-js-mode)
   (add-hook 'rjsx-mode-hook 'tide-mode)
   )
 
@@ -16,7 +15,6 @@
 
   :init
   (add-hook 'typescript-mode-hook 'tide-mode)
-  (add-hook 'typescript-mode-hook 'prettier-mode)
 
   :config
   (tide-setup)
@@ -25,6 +23,15 @@
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
   (company-mode +1)
+
+  :config
+  ;; aligns annotation to the right hand side
+  (setq company-tooltip-align-annotations t)
+
+  ;; formats the buffer before saving
+  (add-hook 'before-save-hook 'tide-format-before-save)
+
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
   )
 
 (provide 'init-js-mode)

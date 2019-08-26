@@ -1,7 +1,8 @@
-;;; lisp/init-flycheck.el
-(use-package flycheck
-  ;;;:init (global-flycheck-mode)
+;;; package --- summary
+;;; commentary:
+;;; code:
 
+(use-package flycheck
   :config
   ;; disable default jslint
   (setq-default flycheck-disabled-checkers
@@ -14,3 +15,5 @@
   )
 
 (provide 'init-flycheck)
+
+;;; init-flycheck ends here

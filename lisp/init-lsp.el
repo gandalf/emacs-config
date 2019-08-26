@@ -18,9 +18,11 @@
 ;;                    :major-modes '(python-mode)
 ;;                    :server-id 'pyls))
 
+  (require 'lsp)
   (require 'lsp-clients)
 
   (add-hook 'python-mode-hook 'lsp)
+  (add-hook 'js2-mode-hook 'lsp)
   (add-hook 'rjsx-mode-hook 'lsp)
 
   :bind
