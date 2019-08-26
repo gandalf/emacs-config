@@ -2,19 +2,21 @@
 ;;; commentary:
 ;;; code:
 
-(use-package js2-mode
+(use-package rjsx-mode
   :mode(("\\.js\\'" . rjsx-mode)
         ("\\.jsx\\'" . rjsx-mode))
-
   :init
-  (add-hook 'rjsx-mode-hook 'tide-mode)
-  )
+  (add-hook 'rjsx-mode-hook 'prettier-js-mode)
+  (add-hook 'rjsx-mode-hook 'tide-mode))
 
 (use-package tide
   :mode(("\\.ts\\'" . typescript-mode))
 
   :init
+  ;;(add-hook 'js2-mode-hook 'tide-mode)
+  ;;(add-hook 'rjsx-mode-hook 'tide-mode)
   (add-hook 'typescript-mode-hook 'tide-mode)
+  (add-hook 'typescript-mode-hook 'prettier-js-mode)
 
   :config
   (tide-setup)
@@ -23,6 +25,10 @@
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
   (company-mode +1)
+  (prettier-js-mode +1)
+
+  (unless (tide-current-server)
+    (tide-restart-server))
 
   :config
   ;; aligns annotation to the right hand side

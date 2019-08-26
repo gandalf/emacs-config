@@ -3,15 +3,11 @@
 ;;; code:
 
 (use-package prettier-js
-  :config
-  (setq prettier-js-args '(
-                           "--trailing-comma" "es5"
-                           "--single-quote" "true"
-                           "--print-width" "120"
-                           "--tab-width" "2"
-                           "--use-tabs" "false"
-                           "--jsx-bracket-same-line" "false"
-                           "--stylelint-integration" "true"))
+  :commands (prettier-js-mode prettier-js-prettify)
+
+  :init
+  (add-hook 'web-mode-hook 'prettier-js-mode)
+  (add-hook 'rjsx-mode-hook 'prettier-js-mode)
   )
 
 (provide 'init-prettier-js)

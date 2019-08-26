@@ -13,10 +13,10 @@
   ;;(require 'lsp-imenu)
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
 
-;;  (lsp-register-client
-;;   (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
-;;                    :major-modes '(python-mode)
-;;                    :server-id 'pyls))
+  ;;(lsp-register-client
+  ;;(make-lsp-client :new-connection (lsp-stdio-connection "pyls")
+  ;;                 :major-modes '(python-mode)
+  ;;                 :server-id 'pyls))
 
   (require 'lsp)
   (require 'lsp-clients)

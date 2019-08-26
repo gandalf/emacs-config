@@ -2,6 +2,8 @@
 ;;; commentary:
 ;;; code:
 
+(setq-default indent-tabs-mode nil)
+(setq require-final-newline t)
 (setq delete-old-versions -1)
 (setq version-control t)
 (setq vc-make-backup-files t)
@@ -20,6 +22,7 @@
 (setq exec-path (append exec-path '("~/.local/bin")))
 (setq elpy-rpc-python-command "/usr/bin/python2")
 
+;;(pending delete-mode 1)
 (global-display-line-numbers-mode t)
 (menu-bar-mode 1)
 (toggle-scroll-bar -1)
@@ -69,6 +72,7 @@
 (require 'init-python)
 (require 'init-web-mode)
 (require 'init-js-mode)
+(require 'init-prettier-js)
 (require 'init-theme)
 (require 'init-powerline)
 (require 'init-fill-column-indicator)
