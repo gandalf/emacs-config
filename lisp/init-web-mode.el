@@ -3,13 +3,10 @@
 ;;; code:
 
 (use-package web-mode
+  :requires flycheck
   :init
-  ;;(add-to-list 'auto-mode-alist '("\\.ts\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
-  ;;(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
-  ;;(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-  ;;(add-to-list 'auto-mode-alist '("\\.json\\'" . web-mode))
 
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
@@ -22,7 +19,11 @@
     (set (make-local-variable 'company-backends)
          '(company-css company-web-html company-yasnippet company-files))
 
-    (add-hook 'web-mode-hook  'my-web-mode-hook)))
+    (add-hook 'web-mode-hook  'my-web-mode-hook))
+
+  ;;(eval-after-load 'flycheck
+  ;;  '(flycheck-add-mode 'html-tidy 'web-mode))
+  )
 
 (provide 'init-web-mode)
 

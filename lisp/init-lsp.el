@@ -2,15 +2,12 @@
 ;;; commentary:
 ;;; code:
 
-;;(use-package lsp-mode
-;;  :commands lsp
-;;  :config (require 'lsp-clients))
-
 (use-package lsp-mode
   :config
+  (setq lsp-prefer-flymake nil) ;; prefer using lsp-ui (flycheck) over flymake
+  (setq-default lsp-pyls-configuration-sources ["flake8"])
 
   ;; make sure we have lsp-imenu everywhere we have LSP
-  ;;(require 'lsp-imenu)
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
 
   ;;(lsp-register-client
@@ -24,6 +21,7 @@
   (add-hook 'python-mode-hook 'lsp)
   (add-hook 'js2-mode-hook 'lsp)
   (add-hook 'rjsx-mode-hook 'lsp)
+  ;;(add-hook 'web-mode 'lsp)
 
   :bind
   ("M-,"  . lsp-ui-peek-find-definitions)
@@ -34,8 +32,11 @@
   :requires lsp-mode flycheck
   :config
 
-  (setq lsp-ui-sideline-ignore-duplicate t)
-    (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (setq
+   ;;lsp-ui-sideline-ignore-duplicate t
+   lsp-ui-flycheck-enable t)
+
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
   ;; (setq lsp-ui-doc-enable t
   ;;       lsp-ui-doc-use-childframe t
@@ -48,8 +49,7 @@
   ;;       lsp-ui-peek-enable t
   ;;       lsp-ui-peek-list-width 60
   ;;       lsp-ui-peek-peek-height 25)
-
-    (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  )
 
 
 (use-package company-lsp

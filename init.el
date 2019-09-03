@@ -20,13 +20,14 @@
 (setq whitespace-line-column 250)  ;; hack to get around ugly bold red text
 (setq exec-path (append exec-path '("~/.nvm/versions/node/v12.9.0/bin")))
 (setq exec-path (append exec-path '("~/.local/bin")))
+(setq exec-path (append exec-path '("~/.local/bin")))
 (setq elpy-rpc-python-command "/usr/bin/python2")
 
 ;;(pending delete-mode 1)
 (global-display-line-numbers-mode t)
 (menu-bar-mode 1)
 (toggle-scroll-bar -1)
-(tool-bar-mode -1)
+(tool-bar-mode t)
 (global-whitespace-mode t)
 (global-hl-line-mode t)
 
@@ -58,7 +59,8 @@
 (use-package company-web)
 (use-package dockerfile-mode)
 (use-package minions)
-(use-package flycheck)
+(use-package thrift)
+(use-package lua-mode)
 
 ;; pull in ./lisp/*
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
@@ -84,3 +86,19 @@
 (global-set-key (kbd "C-c h") 'company-complete)
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (lua-mode thrift thrift-mode ws-butler which-key web-mode use-package tide smartparens rjsx-mode py-autopep8 projectile prettier-js powerline neotree minions lsp-ui lsp-typescript lsp-javascript-typescript lsp-javascript-flow json-mode fill-column-indicator elpy doom-themes doom-modeline dockerfile-mode counsel company-web company-lsp better-defaults))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(flycheck-error ((t (:underline "#C16069"))))
+ '(flycheck-info ((t (:underline "#3CB371"))))
+ '(flycheck-warning ((t (:underline "#F0E68C")))))
